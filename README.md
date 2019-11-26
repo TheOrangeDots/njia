@@ -35,6 +35,19 @@ The service supports the following config options, through environment variables
 - redirectUrlTemplate (required): the template for the url that Njia needs to redirect incoming GETs to. The template must contain a astrix, which will be replaced by the first part of the state parameter after splitting the state parameter by colon (`:`) 
 - certPem & keyPem (optional): the actual certificate and key strings for TLS 
 
+### Docker
+
+Build your Docker container
+
+`cd server`
+`docker build -t njia .`
+
+and run it with 
+
+`docker run --name njia --env redirectUrlTemplate='https://*.example.com' -p 8080:8080 njia`
+
+> the server starts on port `8080` by default but a different port can be specified with `--env port=9999`
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
