@@ -32,7 +32,7 @@ Build using Go and then have fun with it
 
 The service supports the following config options, through environment variables:
 - port: the port the service listewns on. Defaults to 443 if TLS is configured, otherwise 8080
-- redirectUrlTemplate (required): the template for the url that Flagger needs to redirect incoming GETs to. The template must contain a astrix, which will be replaced by the first part of the state parameter after splitting the state parameter by colon (`:`) 
+- redirectUrlTemplate (required): the template for the url that Njia needs to redirect incoming GETs to. The template must contain a astrix, which will be replaced by the first part of the state parameter after splitting the state parameter by colon (`:`) 
 - certPem & keyPem (optional): the actual certificate and key strings for TLS 
 
 ## License
