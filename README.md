@@ -12,10 +12,10 @@ When deploying a SaaS webapp on a url that is specifc per tenant, like https://t
 Hence Njia was created: by encoding the bit of the actual redirect url that is dynamic for tenants in the state parameter (which should be used!), Njia will read it, merge it into a preconfigured redirectUrlTemplate and redirect the User-Agent to the tenant-specific url 
 
 What does the flow look like?:
-- Njia is started (by the RP) with `redirectUrlTemplate` set to for example `https://*.example.com` and exposed to the internet on `https://redirect.example.com`
+- Njia is started (by the RP) with `redirectUrlTemplate` set to for example https://*.example.com and exposed to the internet on https://redirect.example.com
 - RP registers an oAuth Client with the OP with a generid redirect url: https://redirect.example.com
 - RP starts an oAuth flow in the browser (User-Agent) for a user of tenant1, by redirecting to the oauth endpoint of the OP, sending `&state=tenant1:theActualRandomStateValue` as state parameter  
-- at some point in the oAuth flow, the OP redirect the User-Agent back to the RP on `\https://redirect.example.com?someOauthParams=xxx&state=tenant1:theActualRandomStateValue
+- at some point in the oAuth flow, the OP redirect the User-Agent back to the RP on https://redirect.example.com?someOauthParams=xxx&state=tenant1:theActualRandomStateValue
 - Njia receives the incoming request and:
   - builds the new, tenant-specific redirectUrl, starting with the redirectUrlTemplate value (https://*.example.com)
   - reads the state parameter from the requestUrl of the incoming request and splits it by colon (`:`)
