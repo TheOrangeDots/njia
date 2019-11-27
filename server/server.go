@@ -7,11 +7,17 @@ import (
 	"net/http"
 	"os"
 	"strings"
+	"time"
 )
 
 var redirectUrlTemplate = os.Getenv("redirectUrlTemplate")
 
 func redirecter(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		http.Error(w, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
+		return
+	}
+
 	state := r.URL.Query().Get("state")
 
 	if state == "" {
@@ -43,7 +49,7 @@ func redirecter(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	if redirectUrlTemplate == "" {
+	if redirectUrlTemplate =="" {
 		fmt.Sprintln("redirectUrlTemplate environment variable not set")
 		os.Exit(1)
 	}
@@ -75,6 +81,9 @@ func main() {
 			TLSConfig: cfg,
 			Handler:   router,
 			Addr: ":" + port,
+			ReadTimeout: 1 * time.Second,
+			WriteTimeout: 1 * time.Second,
+			MaxHeaderBytes: 1, // becomes 4097
 		}
 
 		log.Fatal(srv.ListenAndServeTLS("", ""))
