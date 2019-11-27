@@ -1,6 +1,6 @@
 # Njia
 
-Njia --- Swahili for Route
+> Njia --- Swahili for Route
 
 A Go-based HTTP(S) redirect service for redirecting generic oAuth callback urls to tenant-specific urls 
 
