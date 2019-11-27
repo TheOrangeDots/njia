@@ -13,7 +13,7 @@ Hence Njia was created: by encoding the bit of the actual redirect url that is d
 
 What does the flow look like?:
 - Njia is started (by the RP) with `redirectUrlTemplate` set to for example https://*.example.com and exposed to the internet on https://redirect.example.com
-- RP registers an oAuth Client with the OP with a generid redirect url: https://redirect.example.com
+- RP registers an oAuth Client with the OP with a generic redirect url: https://redirect.example.com
 - RP starts an oAuth flow in the browser (User-Agent) for a user of tenant1, by redirecting to the oauth endpoint of the OP, sending `&state=tenant1:theActualRandomStateValue` as state parameter  
 - at some point in the oAuth flow, the OP redirect the User-Agent back to the RP on https://redirect.example.com?someOauthParams=xxx&state=tenant1:theActualRandomStateValue
 - Njia receives the incoming request and:
